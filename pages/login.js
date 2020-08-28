@@ -23,7 +23,7 @@ export default function Login() {
 
   const classes = useStyles();
 
-  const responseGoogle = (response) => {
+  const handleAuthSuccess = (response) => {
     setAccessToken(response.accessToken);
     router.push("/channels");
   };
@@ -44,7 +44,7 @@ export default function Login() {
             clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
             scope="profile email https://www.googleapis.com/auth/youtube.readonly"
             buttonText="Login"
-            onSuccess={responseGoogle}
+            onSuccess={handleAuthSuccess}
             onFailure={failureMessage}
           />
           {errorMessage && <p>{errorMessage}</p>}

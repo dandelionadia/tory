@@ -48,12 +48,12 @@ export default MyApp;
 function Login() {
   const { setAccessToken } = useContext(AuthContext);
 
-  const responseGoogle = (response) => {
+  const handleAuthSuccess = (response) => {
     setAccessToken(response.accessToken);
 	};
 
 	return (
-		<GoogleLogin onSuccess={responseGoogle} />;
+		<GoogleLogin onSuccess={handleAuthSuccess} />;
 	)
 }
 ```
