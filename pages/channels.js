@@ -41,7 +41,7 @@ export default function Channels() {
         `https://www.googleapis.com/youtube/v3/subscriptions?part=snippet%2CcontentDetails&mine=true&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`,
         {
           headers: {
-            // ...
+            // google know it is use by accessToken
             authorization: `Bearer ${accessToken}`,
           },
         }
