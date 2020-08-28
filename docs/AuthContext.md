@@ -50,11 +50,11 @@ function Login() {
 
   const handleAuthSuccess = (response) => {
     setAccessToken(response.accessToken);
-	};
+};
 
-	return (
-		<GoogleLogin onSuccess={handleAuthSuccess} />;
-	)
+  return (
+    <GoogleLogin onSuccess={handleAuthSuccess} />;
+  )
 }
 ```
 
