@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { CardHeader } from "@material-ui/core";
@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 export default function Login() {
   const { setAccessToken } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
 
@@ -25,6 +26,10 @@ export default function Login() {
   const responseGoogle = (response) => {
     setAccessToken(response.accessToken);
     router.push("/channels");
+  };
+
+  const failureMessage = (error) => {
+    return setErrorMessage(error);
   };
 
   return (
@@ -40,7 +45,9 @@ export default function Login() {
             scope="profile email https://www.googleapis.com/auth/youtube.readonly"
             buttonText="Login"
             onSuccess={responseGoogle}
+            onFailure={failureMessage}
           />
+          {errorMessage && <p>{errorMessage}</p>}
         </CardContent>
       </Card>
     </div>
