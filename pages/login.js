@@ -5,6 +5,7 @@ import { CardHeader } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { GoogleLogin } from "react-google-login";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -25,6 +26,7 @@ export default function Login() {
 
   const handleAuthSuccess = (response) => {
     setAccessToken(response.accessToken);
+    Cookies.set("accessToken", response.accessToken);
     router.push("/channels");
   };
 
