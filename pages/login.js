@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 export default function Login() {
-  const { setAccessToken } = useContext(AuthContext);
+  const { accessToken, setAccessToken } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
@@ -33,6 +33,10 @@ export default function Login() {
   const failureMessage = (error) => {
     return setErrorMessage(error);
   };
+
+  if (accessToken) {
+    router.push("/channels");
+  }
 
   return (
     <div>
