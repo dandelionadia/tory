@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { CardHeader } from "@material-ui/core";
@@ -21,7 +21,6 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
-
   const classes = useStyles();
 
   const handleAuthSuccess = (response) => {
@@ -34,8 +33,14 @@ export default function Login() {
     return setErrorMessage(error);
   };
 
+  useEffect(() => {
+    if (accessToken) {
+      router.push("/channels");
+    }
+  }, [accessToken]);
+
   if (accessToken) {
-    router.push("/channels");
+    return null;
   }
 
   return (
