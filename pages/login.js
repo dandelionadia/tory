@@ -29,7 +29,7 @@ export default function Login() {
     router.push("/channels");
   };
 
-  const failureMessage = (error) => {
+  const handleAuthFailure = (error) => {
     return setErrorMessage(error);
   };
 
@@ -56,7 +56,7 @@ export default function Login() {
             scope="profile email https://www.googleapis.com/auth/youtube.readonly"
             buttonText="Login"
             onSuccess={handleAuthSuccess}
-            onFailure={failureMessage}
+            onFailure={handleAuthFailure}
           />
           {errorMessage && <p>{errorMessage}</p>}
         </CardContent>
