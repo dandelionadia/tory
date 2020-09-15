@@ -62,6 +62,7 @@ export default function Channels() {
                 align="center"
                 width="500px"
                 maxWidth="100%"
+                key={channel.snippet.resourceId.channelId}
               >
                 <Link
                   href={`https://www.youtube.com/channel/${channel.snippet.resourceId.channelId}`}
