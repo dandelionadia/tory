@@ -25,10 +25,11 @@ export const AuthContext = createContext();
 ```js
 import { useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Cookies from "js-cookie";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  const [accessToken, setAccessToken] = useState();
+  const [accessToken, setAccessToken] = useState(Cookies.get("accessToken"));
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>
@@ -45,12 +46,17 @@ export default MyApp;
 - use context and changes state when user login
 
 ```js
+import { GoogleLogin } from "react-google-login";
+import Cookies from "js-cookie";
+
 function Login() {
   const { setAccessToken } = useContext(AuthContext);
 
   const handleAuthSuccess = (response) => {
+    // response is info from google and it has property 'accessToken'
     setAccessToken(response.accessToken);
-};
+    Cookies.set("accessToken", response.accessToken);
+  };
 
   return (
     <GoogleLogin onSuccess={handleAuthSuccess} />;
