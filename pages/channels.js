@@ -44,6 +44,10 @@ export default function Channels() {
     return <p>looading</p>;
   }
 
+  if (subscriptions.error) {
+    return <p>error</p>;
+  }
+
   return (
     <>
       <Heading mb={6} mt={6}>
@@ -51,6 +55,7 @@ export default function Channels() {
       </Heading>
       <List styleType="disc">
         <Stack spacing={4}>
+          (accessToken ?
           {subscriptions.items.map((channel) => {
             return (
               <Stack
@@ -83,6 +88,7 @@ export default function Channels() {
               </Stack>
             );
           })}
+          : null)
         </Stack>
       </List>
     </>
